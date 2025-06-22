@@ -57,8 +57,10 @@ class Docker {
     if (!existsSync(githubWorkflow)) mkdirSync(githubWorkflow);
     const commandPrefix = image === `alpine` ? `/bin/sh` : `/bin/bash`;
 
+    console.log("hi2!")
+
     return `docker run \
-            --workdir ${dockerWorkspacePath} \
+            --workdir test2${dockerWorkspacePath} \
             --rm \
             ${ImageEnvironmentFactory.getEnvVarString(parameters, additionalVariables)} \
             --env GITHUB_WORKSPACE=${dockerWorkspacePath} \
@@ -102,6 +104,8 @@ class Docker {
 
     const githubHome = path.join(runnerTempPath, '_github_home');
     if (!existsSync(githubHome)) mkdirSync(githubHome);
+
+    console.log("hi!")
 
     return `docker run \
             --workdir test${dockerWorkspacePath} \
